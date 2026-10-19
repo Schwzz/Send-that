@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MediaShare</string>
+    <string name="app_tagline">Native Media Downloader &amp; Resharer</string>
+    <string name="tab_share">Share &amp; Download</string>
+    <string name="tab_library">Downloads Library</string>
+    <string name="waiting_for_share_title">Ready for Shared Content</string>
+    <string name="waiting_for_share_subtitle">Share a link, image, or video to MediaShare from another app to download and re-share it instantly</string>
+    <string name="input_url_hint">Or paste an image / video URL here</string>
+    <string name="action_download">Download &amp; Share</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_share">Share File</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_open">Open</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_copy">Copy</string>
+    <string name="toast_copied">Copied to clipboard</string>
+    <string name="toast_deleted">File deleted from library</string>
+    <string name="dialog_delete_title">Delete Downloaded File?</string>
+    <string name="dialog_delete_message">This will permanently delete \"%1$s\" from your private app storage.</string>
+    <string name="dialog_confirm">Delete</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="status_downloading">Downloading media stream…</string>
+    <string name="status_resolving">Analyzing URL &amp; headers…</string>
+    <string name="status_saving">Saving to private storage…</string>
+    <string name="status_ready_to_share">Download complete! Launching share sheet…</string>
+    <string name="share_chooser_title">Share media via</string>
+    <string name="library_empty_title">No Downloads Yet</string>
+    <string name="library_empty_desc">Media files you download via Android\'s Share menu or direct URLs will be saved here in private storage.</string>
+    <string name="error_empty_share">The shared intent contained no readable text or media content.</string>
+    <string name="error_html_received">Server returned an HTML webpage instead of a media file. Social media platforms often require authentication or hide direct media streams.</string>
+    <string name="error_file_too_large">File exceeds the maximum allowed size (150 MB).</string>
+    <string name="error_network">Network request failed. Please check your connection and try again.</string>
+    <string name="error_unknown">Unable to download media from this source.</string>
+</resources>

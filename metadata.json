@@ -1,0 +1,6 @@
+{
+  "name": "MediaShare",
+  "description": "Native Android application for receiving shared media and URLs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
