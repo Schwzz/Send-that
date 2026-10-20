@@ -22,20 +22,44 @@ jobs:
         java-version: '17'
         cache: 'gradle'
 
+    - name: Locate Android Project Root
+      id: locate-root
+      run: |
+        if [ -f "settings.gradle.kts" ] || [ -f "settings.gradle" ]; then
+          echo "PROJECT_DIR=." >> $GITHUB_ENV
+          echo "Found Gradle project in root directory."
+        else
+          FOUND_DIR=$(find . -maxdepth 3 \( -name "settings.gradle.kts" -o -name "settings.gradle" \) -exec dirname {} \; | head -n 1)
+          if [ -n "$FOUND_DIR" ]; then
+            echo "Found Gradle project in subdirectory: $FOUND_DIR"
+            echo "PROJECT_DIR=$FOUND_DIR" >> $GITHUB_ENV
+          else
+            echo "Listing repository contents for diagnostics:"
+            ls -la
+            echo "ERROR: Neither settings.gradle.kts nor settings.gradle was found in the repository!"
+            echo "Make sure the root Gradle files (settings.gradle.kts, build.gradle.kts, gradle/) are pushed to GitHub."
+            exit 1
+          fi
+        fi
+
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
+      with:
+        build-root-directory: ${{ env.PROJECT_DIR }}
 
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x ${{ env.PROJECT_DIR }}/gradlew
 
     - name: Run Unit & Robolectric Tests
+      working-directory: ${{ env.PROJECT_DIR }}
       run: ./gradlew :app:testDebugUnitTest
 
     - name: Build Debug APK
+      working-directory: ${{ env.PROJECT_DIR }}
       run: ./gradlew :app:assembleDebug
 
     - name: Upload Debug APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: MediaShare-debug-apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: ${{ env.PROJECT_DIR }}/app/build/outputs/apk/debug/app-debug.apk
